@@ -1,0 +1,289 @@
+
+package Javapackage;
+
+
+
+import junit.framework.Assert;
+import net.bytebuddy.description.modifier.SynchronizationState;
+
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
+
+import javax.sound.midi.MidiDevice.Info;
+
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import com.relevantcodes.extentreports.LogStatus;
+
+public class Scenario1 extends ExtendReportsClass{
+ 
+	WebDriver driver;
+	
+	 
+	
+  @BeforeClass
+  public void start() {
+	  
+	  System.setProperty("webdriver.chrome.driver", "D:\\Selenium Docs\\Selenium Drivers\\chromedriver.exe");
+	   driver=new ChromeDriver();
+	 //Step1-Launch opencart
+		  driver.get("http://10.207.182.108:81/opencart/");
+			driver.manage().window().maximize();
+			
+			//step2-click on Create an account
+	        driver.findElement(By.xpath("//a[@href='http://10.207.182.108:81/opencart/index.php?route=account/register']")).click();		  
+  }
+  /*------------------------------------------------------------------------*/
+   
+  @Test(dataProvider="Registration1",priority=1)
+  public void Login(String fname,String lname,String email,String phone,String fax,
+		  String company,String company_id,String address1,String address2,String city,
+		  String postcode,String password,String confirm) throws InterruptedException
+  {
+
+	  logger = extent.startTest("Login"); 
+       
+//step3-fill details
+        driver.findElement(By.name("firstname")).sendKeys(fname);
+        driver.findElement(By.name("lastname")).sendKeys(lname);
+        driver.findElement(By.name("email")).sendKeys(email);
+        driver.findElement(By.name("telephone")).sendKeys(phone);
+        driver.findElement(By.name("fax")).sendKeys(fax);
+        driver.findElement(By.name("company")).sendKeys(company);         
+        driver.findElement(By.name("company_id")).sendKeys(company_id);
+        driver.findElement(By.name("address_1")).sendKeys(address1);
+        driver.findElement(By.name("address_2")).sendKeys(address2);
+        driver.findElement(By.name("city")).sendKeys(city);
+        driver.findElement(By.name("postcode")).sendKeys(postcode);
+        Thread.sleep(3000);
+        WebElement drop = driver.findElement(By.name("country_id"));
+        Select A = new Select(drop);
+       A.selectByVisibleText("India");
+       Thread.sleep(3000);
+       WebElement drop1 = driver.findElement(By.name("zone_id"));
+       Select B = new Select(drop1);
+       B.selectByVisibleText("Andhra Pradesh");
+       
+        driver.findElement(By.name("password")).sendKeys(password);
+       driver.findElement(By.name("confirm")).sendKeys(confirm);
+       driver.findElement(By.xpath("//*[@id='content']/form/div[4]/table/tbody/tr/td[2]/input[1]")).click();
+       driver.findElement(By.xpath(".//*[@id='content']/form/div[5]/div/a/b")).click();
+       driver.findElement(By.xpath(".//*[@id='cboxClose']")).click();   
+       
+       
+       //step4
+       Thread.sleep(3000);
+       driver.findElement(By.name("agree")).click();
+       driver.findElement(By.xpath("//input[@type='submit']")).click();
+       
+        Thread.sleep(5000);
+String e= driver.findElement(By.xpath(".//*[@id='content']/h1")).getText();
+Assert.assertEquals(e,"Your Account Has Been Created!");
+        System.out.println("Account created");                                                                  
+                        Thread.sleep(3000);
+                        
+           //step5               
+         //home
+         driver.findElement(By.xpath("//a[@href='http://10.207.182.108:81/opencart/index.php?route=common/home']")).click();
+          System.out.println("Home page");
+           Thread.sleep(2000);
+
+
+         //click on Samsung Galaxy tab
+           driver.findElement(By.xpath("//a[@href='index.php?route=product/product&path=57&product_id=49']")).click();
+            System.out.println("Samsung galaxy tab");
+            Thread.sleep(3000);
+            
+            logger.log(LogStatus.PASS, "Login done Successfully", "Method \"Login\" is passed");
+  }
+ 
+ /*-------------------------------------------------------------------------*/
+  
+  //DATAPROVIDER//
+  
+  @DataProvider(name="Registration1")
+  public static Object[][] Register() throws IOException{
+	  Object[][] obj=ExcelLogic.readExcel("RegistrationSheet","D:\\Selenium Docs\\InputFiles of Testng\\EclipseInputSheet.xlsx");
+	 // System.out.println(obj);
+	  return obj;
+  }
+
+  @DataProvider(name="ReadTheData")
+  public static  Object[][] Review1() throws IOException{
+	  Object[][] obj=ExcelLogic.readExcel("ReviewSheet","D:\\Selenium Docs\\InputFiles of Testng\\EclipseInputSheet.xlsx");
+	  return obj;
+  }
+ 
+ /*------------------------------------------------------------------------*/
+	
+  @Test(dataProvider="ReadTheData",priority=2)
+  
+  public void Review(String name,String review,String rating) throws Exception
+  {
+	  
+	  logger = extent.startTest("Review");
+	  
+      //step6-Click on review tab
+      driver.findElement(By.linkText("Reviews (0)")).click();
+      System.out.println("Clicked on review");
+      
+      //step7&8
+      driver.findElement(By.name("name")).clear();
+      driver.findElement(By.name("name")).sendKeys(name);
+      driver.findElement(By.name("text")).sendKeys(review);
+      driver.findElement(By.xpath("//input[@value='"+rating+"']")).click();
+      System.out.println("Please enter the captcha:");
+      Scanner sc = new Scanner(System.in);
+      String Captcha = sc.nextLine();
+      driver.findElement(By.name("captcha")).clear();
+      driver.findElement(By.name("captcha")).sendKeys(Captcha);
+      Thread.sleep(3000);
+      driver.findElement(By.id("button-review")).click();
+      System.out.println("Review done");
+      Thread.sleep(2000);
+      if(review.length()<25){
+    	  String rev=driver.findElement(By.className("warning")).getText();
+    	  Assert.assertTrue(rev.contains("Warning"));
+    	  System.out.println("Warning msg displayed"); 
+      }
+      
+     logger.log(LogStatus.PASS, "Review is successfull", "Method \"Review\" is passed");
+
+  }
+  
+  //------------------------------------------------------------------------
+
+  
+  
+@Test(description="Add to wishList",priority=3)
+  
+  public void Wishlist() throws Exception{
+	
+	logger = extent.startTest("Wishlist");
+	 
+     //step9-Add to WishList
+    Thread.sleep(10000);
+    driver.findElement(By.partialLinkText("Add to Wish List")).click();
+System.out.println("Added to WishList");
+    Thread.sleep(3000);
+    
+    //step10-close the ribbon
+    driver.findElement(By.xpath("//div[@id='notification']/div/img")).click();
+    System.out.println("close the success message of wishlist");
+    
+    //step11-whishlist link
+     Thread.sleep(1000);
+    driver.findElement(By.partialLinkText("Wish List")).click();
+    System.out.println("clicked on Wish list link");    
+    Thread.sleep(2000);
+    //checkpoint
+    String wishlist=driver.findElement(By.id("wishlist-total")).getText();
+    System.out.println("The text of the Wishlist is " + wishlist);
+    String wishlisttext=wishlist.substring(11,wishlist.length()-1);
+    //to convert string to integer
+    int wishlistint=Integer.parseInt(wishlisttext);
+   System.out.println("wish list items" +wishlistint);
+   
+  List<WebElement> Countwishlist=driver.findElements(By.xpath(".//*[@id='content']/div[2]/table/tbody"));
+   System.out.println("List count is " +Countwishlist.size());
+   
+   //comparing Countwishlist.size() and wishlistint
+   Assert.assertEquals("Wishlist Items are not matching", Countwishlist.size(), wishlistint);
+   
+    
+     //step12-Change the currency euro
+    driver.findElement(By.linkText("€")).click();
+    
+  //step13-Flatfile creation
+    File outputfile=new File("D:\\Selenium Docs\\Selenium Eclipse\\Output files\\Unitpricevalue.txt");
+    String value=driver.findElement(By.xpath(".//*[@id='wishlist-row49']/tr/td[5]/div")).getText();
+    System.out.println("Unit Price is" +value);
+    BufferedWriter bw=new BufferedWriter(new FileWriter(outputfile));
+    bw.write("The unit price value is" +value);
+    
+  //step14-Change the currency pound
+    driver.findElement(By.linkText("£")).click();
+    
+  //step15-Flatfile creation
+    String value1=driver.findElement(By.xpath(".//*[@id='wishlist-row49']/tr/td[5]/div")).getText();
+    System.out.println("Unit Price is" +value1);
+    //BufferedWriter bw=new BufferedWriter(new FileWriter(outputfile));
+    bw.newLine();
+    bw.append("The unit price value is" +value1);
+    
+  //step16-Change the currency dollar
+    driver.findElement(By.linkText("$")).click();
+    
+  //step17-Flatfile creation
+    String value2=driver.findElement(By.xpath(".//*[@id='wishlist-row49']/tr/td[5]/div")).getText();
+    System.out.println("Unit Price is" +value2);
+    //BufferedWriter bw=new BufferedWriter(new FileWriter(outputfile));
+    bw.newLine();
+    bw.append("The unit price value is" +value1);
+    bw.close();
+    
+   
+    Thread.sleep(2000);
+
+    
+      //step18-add to cart
+driver.findElement(By.xpath(".//*[@id='wishlist-row49']/tr/td[6]/img")).click();
+System.out.println("Added to cart");
+
+     //step19-close the success message of cart button
+    Thread.sleep(3000);
+driver.findElement(By.xpath("//div[@id='notification']/div/img")).click();
+    System.out.println("close the success message of cart");
+    
+     Thread.sleep(1000);
+    
+//step20-My wish list remove icon
+    driver.findElement(By.partialLinkText("Wish List")).click();
+    Thread.sleep(1000);
+    driver.findElement(By.xpath("//tbody[@id='wishlist-row49']/tr/td[6]/a/img")).click();
+    System.out.println("Removed icon in wishlist");
+    Thread.sleep(3000);
+    //step21-click on continue
+     driver.findElement(By.linkText("Continue")).click();
+    
+     
+     //step22-Logout
+    Thread.sleep(3000);
+    driver.findElement(By.linkText("Logout")).click();
+
+
+     String f=driver.findElement(By.xpath(".//*[@id='content']/h1")).getText();
+      Assert.assertEquals(f,"Account Logout");
+                    System.out.println("Logout Successful");
+    
+     
+                    logger.log(LogStatus.PASS, "Method \"Wishlist\" is passed");
+
+	  
+         }
+   
+
+  }
+
