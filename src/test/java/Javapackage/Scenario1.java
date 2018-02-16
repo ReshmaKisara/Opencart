@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,11 +27,14 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -39,58 +43,85 @@ import com.relevantcodes.extentreports.LogStatus;
 
 public class Scenario1 extends ExtendReportsClass{
  
-	WebDriver driver;
-	
+	RegistrationPage RegistrationPage;
+	WebDriver driver = null;
+	String url;
 	 
 	
   @BeforeClass
-  public void start() {
+  public void start() throws Exception {
 	  
+	  
+	  
+	  
+	 /* url = "http://10.159.34.113:4444/wd/hub";
+	          try {
+	              DesiredCapabilities capabilities = new DesiredCapabilities();
+	              capabilities.setBrowserName("chrome");
+	              capabilities.setPlatform(Platform.WINDOWS);
+	              driver = new RemoteWebDriver(new URL(url),capabilities);
+	              
+	          }catch(Exception e){
+	              e.printStackTrace();
+	          }*/
 	  System.setProperty("webdriver.chrome.driver", "D:\\Selenium Docs\\Selenium Drivers\\chromedriver.exe");
 	   driver=new ChromeDriver();
+	   driver.get("http://10.207.182.108:81/opencart/");
+	   
+	   driver.manage().window().maximize();
+	   
+		Thread.sleep(3000);
+		
 	 //Step1-Launch opencart
-		  driver.get("http://10.207.182.108:81/opencart/");
-			driver.manage().window().maximize();
+		 
 			
 			//step2-click on Create an account
-	        driver.findElement(By.xpath("//a[@href='http://10.207.182.108:81/opencart/index.php?route=account/register']")).click();		  
+		
+		RegistrationPage =new RegistrationPage(driver);	
+		
+		RegistrationPage.Register.click();
   }
   /*------------------------------------------------------------------------*/
    
-  @Test(dataProvider="Registration1",priority=1)
+  @Test(dataProvider="Registration1")
   public void Login(String fname,String lname,String email,String phone,String fax,
 		  String company,String company_id,String address1,String address2,String city,
 		  String postcode,String password,String confirm) throws InterruptedException
   {
 
 	  logger = extent.startTest("Login"); 
+	  
+	  
+	  RegistrationPage =new RegistrationPage(driver);
+	  
        
 //step3-fill details
-        driver.findElement(By.name("firstname")).sendKeys(fname);
-        driver.findElement(By.name("lastname")).sendKeys(lname);
-        driver.findElement(By.name("email")).sendKeys(email);
-        driver.findElement(By.name("telephone")).sendKeys(phone);
-        driver.findElement(By.name("fax")).sendKeys(fax);
-        driver.findElement(By.name("company")).sendKeys(company);         
-        driver.findElement(By.name("company_id")).sendKeys(company_id);
-        driver.findElement(By.name("address_1")).sendKeys(address1);
-        driver.findElement(By.name("address_2")).sendKeys(address2);
-        driver.findElement(By.name("city")).sendKeys(city);
-        driver.findElement(By.name("postcode")).sendKeys(postcode);
-        Thread.sleep(3000);
-        WebElement drop = driver.findElement(By.name("country_id"));
+	    RegistrationPage.fnameR.sendKeys(fname);
+	    RegistrationPage.LnameR.sendKeys(lname);
+	    RegistrationPage.emailR.sendKeys(System.nanoTime()+email);
+	    RegistrationPage.telephoneR.sendKeys(phone);
+	    RegistrationPage.faxR.sendKeys(fax);
+	    RegistrationPage.companyR.sendKeys(company);
+	    RegistrationPage.companyidR.sendKeys(company_id);
+	    RegistrationPage.address1R.sendKeys(address1);
+	    RegistrationPage.address2R.sendKeys(address2);
+	    RegistrationPage.cityR.sendKeys(city);
+	    RegistrationPage.postcodeR.sendKeys(postcode);
+	    Thread.sleep(3000);
+        WebElement drop = RegistrationPage.countryidR;
         Select A = new Select(drop);
        A.selectByVisibleText("India");
        Thread.sleep(3000);
-       WebElement drop1 = driver.findElement(By.name("zone_id"));
+       WebElement drop1 = RegistrationPage.zoneidR;
        Select B = new Select(drop1);
        B.selectByVisibleText("Andhra Pradesh");
+	    
+       RegistrationPage.passwordR.sendKeys(password);
+       RegistrationPage.confirmR.sendKeys(confirm);
+       RegistrationPage.SubscribeR.click();
+       RegistrationPage.checkboxR.click();
+       RegistrationPage.continueR.click();
        
-        driver.findElement(By.name("password")).sendKeys(password);
-       driver.findElement(By.name("confirm")).sendKeys(confirm);
-       driver.findElement(By.xpath("//*[@id='content']/form/div[4]/table/tbody/tr/td[2]/input[1]")).click();
-       driver.findElement(By.xpath(".//*[@id='content']/form/div[5]/div/a/b")).click();
-       driver.findElement(By.xpath(".//*[@id='cboxClose']")).click();   
        
        
        //step4
@@ -138,7 +169,7 @@ Assert.assertEquals(e,"Your Account Has Been Created!");
  
  /*------------------------------------------------------------------------*/
 	
-  @Test(dataProvider="ReadTheData",priority=2)
+  @Test(dataProvider="ReadTheData")
   
   public void Review(String name,String review,String rating) throws Exception
   {
@@ -154,12 +185,17 @@ Assert.assertEquals(e,"Your Account Has Been Created!");
       driver.findElement(By.name("name")).sendKeys(name);
       driver.findElement(By.name("text")).sendKeys(review);
       driver.findElement(By.xpath("//input[@value='"+rating+"']")).click();
-      System.out.println("Please enter the captcha:");
+     
+      
+      /*System.out.println("Please enter the captcha:");
       Scanner sc = new Scanner(System.in);
       String Captcha = sc.nextLine();
       driver.findElement(By.name("captcha")).clear();
-      driver.findElement(By.name("captcha")).sendKeys(Captcha);
-      Thread.sleep(3000);
+      driver.findElement(By.name("captcha")).sendKeys(Captcha);*/
+      
+      //captcha
+      Thread.sleep(9000);
+      
       driver.findElement(By.id("button-review")).click();
       System.out.println("Review done");
       Thread.sleep(2000);
@@ -177,7 +213,7 @@ Assert.assertEquals(e,"Your Account Has Been Created!");
 
   
   
-@Test(description="Add to wishList",priority=3)
+@Test(description="Add to wishList")
   
   public void Wishlist() throws Exception{
 	

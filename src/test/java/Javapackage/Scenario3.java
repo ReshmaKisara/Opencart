@@ -33,7 +33,7 @@ public class Scenario3 extends ExtendReportsClass{
 	FileInputStream File;
 	  Properties pro;
 	  
-	  WebDriver driver;
+	  WebDriver driver = null;
 	  String str1;
 	  @BeforeClass
 
@@ -49,11 +49,11 @@ public class Scenario3 extends ExtendReportsClass{
 		   driver.manage().window().maximize();
 		  
 	  }
-  @Test(priority=1)
-  public void Login() throws Exception {
+  @Test
+  public void aLogin() throws Exception {
 	  
 	//ExtentReports line
-	  logger = extent.startTest("Login"); 
+	  logger = extent.startTest("aLogin"); 
 	  
 	  
 	  //Step1-launch opencart
@@ -75,10 +75,10 @@ public class Scenario3 extends ExtendReportsClass{
 	  String Loginvalue= driver.findElement(By.xpath("//a[@href='http://10.207.182.108:81/opencart/index.php?route=account/account']")).getText();
 	  //System.out.println(Loginvalue);
 	  Assert.assertEquals(Loginvalue,"Reshma");
-	  System.out.println("Logged in with the User Demo");
+	  System.out.println("Logged in with the User Reshma");
 	  
 	//ExtentReports line
-	  logger.log(LogStatus.PASS, "Loggedin Successfully" ,"Method \"Login\" is passed"); 
+	  logger.log(LogStatus.PASS, "Loggedin Successfully" ,"Method \"aLogin\" is passed"); 
   }
 	  
 	  /*-----------------------------------------------*/
@@ -91,9 +91,9 @@ public class Scenario3 extends ExtendReportsClass{
 
 	  /*-----------------------------------------------*/
 	  
-	  @Test(dataProvider="Search",priority=2)
+	  @Test(dataProvider="Search")
 	  
-	  public void Apple(String product) throws AWTException, Exception
+	  public void bApple(String product) throws AWTException, Exception
 	  {
 		  
 		//ExtentReports line

@@ -29,7 +29,7 @@ public class Scenario4 extends ExtendReportsClass {
   
 	FileInputStream File;
 	  Properties pro;
-	WebDriver driver;
+	WebDriver driver = null;
 	
 	
   @BeforeClass
@@ -70,7 +70,7 @@ public class Scenario4 extends ExtendReportsClass {
 	   //--------------------------------
 	    
   }
-	@Test
+	@Test(priority=1)
 	
 	public void scenario4() throws InterruptedException, Exception{
 		

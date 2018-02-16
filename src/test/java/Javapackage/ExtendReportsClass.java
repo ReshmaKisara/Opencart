@@ -22,8 +22,8 @@ import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
 public class ExtendReportsClass{
-	ExtentReports extent;
-	ExtentTest logger;
+	static ExtentReports extent;
+	static ExtentTest logger;
 
 
 	@BeforeSuite
@@ -66,6 +66,6 @@ public class ExtendReportsClass{
 		//You should call close() only once, at the very end (in @AfterSuite for example) as it closes the underlying stream. 
 		//Once this method is called, calling any Extent method will throw an error.
 		//close() - To close all the operation
-		extent.close();
+		//extent.close();
 	}
 }

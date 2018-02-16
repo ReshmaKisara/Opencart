@@ -3,6 +3,7 @@ package Javapackage;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -14,9 +15,12 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -33,8 +37,10 @@ public class Scenario2 extends ExtendReportsClass{
 	FileInputStream File;
 	  Properties pro;
 	  
-	  WebDriver driver;
+	  WebDriver driver = null;
 	  String str1;
+	  String url;
+	 
 	  
 	  @BeforeClass
           public void f() throws Exception {
@@ -42,9 +48,17 @@ public class Scenario2 extends ExtendReportsClass{
 		  pro=new Properties();
 		  pro.load(File);
 		  
-		  
-		  System.setProperty("webdriver.chrome.driver", "D:\\Selenium Docs\\Selenium Drivers\\chromedriver.exe");
-		   driver=new ChromeDriver();
+		  url = "http://10.159.34.113:4444/wd/hub";
+          try {
+              DesiredCapabilities capabilities = new DesiredCapabilities();
+              capabilities.setBrowserName("chrome");
+              capabilities.setPlatform(Platform.WINDOWS);
+              driver = new RemoteWebDriver(new URL(url), capabilities);
+          }catch(Exception e){
+              e.printStackTrace();
+          }
+		/*  System.setProperty("webdriver.chrome.driver", "D:\\Selenium Docs\\Selenium Drivers\\chromedriver.exe");
+		   driver=new ChromeDriver();*/
 		   driver.manage().window().maximize();
 		  
 	  }
@@ -131,6 +145,7 @@ public class Scenario2 extends ExtendReportsClass{
 					  //driver.findElement(By.linkText("Add to Cart")).click();
 					  driver.findElement(By.xpath("//a[contains(text(),'Add to Cart')]")).click();
 					  System.out.println("Add to cart is clicked");
+					  Thread.sleep(2000);
 			      }
 				  
 				  else{
@@ -306,13 +321,14 @@ public class Scenario2 extends ExtendReportsClass{
 	       System.out.println("Clicked on order error");
 	       
 	         //captua
-	       System.out.println("Please enter the captcha:");
+	       /*System.out.println("Please enter the captcha:");
 	       Scanner scr = new Scanner(System.in);
 	       String Captcha = scr.nextLine();
 	       driver.findElement(By.name("captcha")).clear();
-	       driver.findElement(By.name("captcha")).sendKeys(Captcha);
+	       driver.findElement(By.name("captcha")).sendKeys(Captcha);*/
 	       
 	       Thread.sleep(9000);
+	       
 	       driver.findElement(By.xpath(pro.getProperty("productreturns.continue.xpath"))).click();
 	       System.out.println("Clicked on continue in product returns");
 	       
