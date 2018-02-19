@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="none">
-  <test thread-count="5" name="Test">
+
+<suite name="Suite" parallel="classes">
+  <test name="Test1"  >
     <classes>
       <class name="Javapackage.Scenario1"/>
       <class name="Javapackage.Scenario2"/>
       <class name="Javapackage.Scenario3"/>
-      <class name="Javapackage.Scenario4"/> 
-    </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+      <class name="Javapackage.Scenario4"/>
+       </classes>
+         </test> 
+    </suite>  

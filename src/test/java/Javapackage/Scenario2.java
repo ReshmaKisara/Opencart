@@ -48,6 +48,8 @@ public class Scenario2 extends ExtendReportsClass{
 		  pro=new Properties();
 		  pro.load(File);
 		  
+		  //Grid
+		  
 		  url = "http://10.159.34.113:4444/wd/hub";
           try {
               DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -63,7 +65,7 @@ public class Scenario2 extends ExtendReportsClass{
 		  
 	  }
 	  
-	  @Test(description="Login",priority=1)
+	  @Test(description="Login")
 	  public void Login() throws Exception{
 		  
 		  //ExtentReports line

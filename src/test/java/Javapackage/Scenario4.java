@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -18,9 +19,12 @@ import java.util.Properties;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -29,6 +33,7 @@ public class Scenario4 extends ExtendReportsClass {
   
 	FileInputStream File;
 	  Properties pro;
+	  String url;
 	WebDriver driver = null;
 	
 	
@@ -39,8 +44,18 @@ public class Scenario4 extends ExtendReportsClass {
 	  pro=new Properties();
 	  pro.load(File);
 	  
-	  System.setProperty("webdriver.chrome.driver", "D:\\Selenium Docs\\Selenium Drivers\\chromedriver.exe");
-	   driver=new ChromeDriver();
+	  url = "http://10.159.34.113:4444/wd/hub";
+      try {
+          DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+          //capabilities.setBrowserName("chrome");
+          capabilities.setPlatform(Platform.WINDOWS);
+          driver = new RemoteWebDriver(new URL(url), capabilities);
+      }catch(Exception e){
+          e.printStackTrace();
+      }
+	  
+	/*  System.setProperty("webdriver.chrome.driver", "D:\\Selenium Docs\\Selenium Drivers\\chromedriver.exe");
+	   driver=new ChromeDriver();*/
 	   driver.manage().window().maximize();
 	  
  

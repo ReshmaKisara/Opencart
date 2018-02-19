@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -18,9 +19,12 @@ import java.util.Set;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -35,6 +39,7 @@ public class Scenario3 extends ExtendReportsClass{
 	  
 	  WebDriver driver = null;
 	  String str1;
+	  String url;
 	  @BeforeClass
 
 	  
@@ -43,9 +48,17 @@ public class Scenario3 extends ExtendReportsClass{
 		  pro=new Properties();
 		  pro.load(File);
 		  
-		  
-		  System.setProperty("webdriver.chrome.driver", "D:\\Selenium Docs\\Selenium drivers\\chromedriver.exe");
-		   driver=new ChromeDriver();
+		  url = "http://10.159.34.113:4444/wd/hub";
+          try {
+              DesiredCapabilities capabilities = new DesiredCapabilities();
+              capabilities.setBrowserName("chrome");
+              capabilities.setPlatform(Platform.WINDOWS);
+              driver = new RemoteWebDriver(new URL(url), capabilities);
+          }catch(Exception e){
+              e.printStackTrace();
+          }
+		  /*System.setProperty("webdriver.chrome.driver", "D:\\Selenium Docs\\Selenium drivers\\chromedriver.exe");
+		   driver=new ChromeDriver();*/
 		   driver.manage().window().maximize();
 		  
 	  }
@@ -346,13 +359,14 @@ bw2.close();
 	             //----------------------------
 	             
 	             //validation
-	             
+	            /* 
 	             BufferedWriter orderhistory=new BufferedWriter(new FileWriter("D:\\Selenium Docs\\Selenium Eclipse\\Output files\\Tc02_step19.txt"));
 		          String orderno=driver.findElement(By.xpath(".//*[@id='tab-description']/ul/li[5]")).getText();
 		          flatfile.write("Feature 5th line is " +Description);
 		          flatfile.close();
-	             
+	             System.out.println("wrote to flatfile");*/
 	             //----------------------------
+		         
 	             
 	            //step20-Subscribe to Newsletter
 	             driver.findElement(By.linkText("Newsletter")).click();

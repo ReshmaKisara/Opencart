@@ -45,7 +45,7 @@ public class Scenario1 extends ExtendReportsClass{
  
 	RegistrationPage RegistrationPage;
 	WebDriver driver = null;
-	String url;
+	String url ;
 	 
 	
   @BeforeClass
@@ -54,28 +54,28 @@ public class Scenario1 extends ExtendReportsClass{
 	  
 	  
 	  
-	 /* url = "http://10.159.34.113:4444/wd/hub";
+	  url = "http://10.159.34.113:4444/wd/hub";
 	          try {
-	              DesiredCapabilities capabilities = new DesiredCapabilities();
+	              DesiredCapabilities capabilities =new DesiredCapabilities();
 	              capabilities.setBrowserName("chrome");
 	              capabilities.setPlatform(Platform.WINDOWS);
 	              driver = new RemoteWebDriver(new URL(url),capabilities);
 	              
 	          }catch(Exception e){
 	              e.printStackTrace();
-	          }*/
-	  System.setProperty("webdriver.chrome.driver", "D:\\Selenium Docs\\Selenium Drivers\\chromedriver.exe");
-	   driver=new ChromeDriver();
-	   driver.get("http://10.207.182.108:81/opencart/");
-	   
+	          }
+	  /*System.setProperty("webdriver.chrome.driver", "D:\\Selenium Docs\\Selenium Drivers\\chromedriver.exe");
+	   driver=new ChromeDriver();*/
 	   driver.manage().window().maximize();
 	   
-		Thread.sleep(3000);
+	   
 		
 	 //Step1-Launch opencart
 		 
-			
-			//step2-click on Create an account
+	   driver.get("http://10.207.182.108:81/opencart/");
+	   
+		Thread.sleep(3000);	
+	//step2-click on Create an account
 		
 		RegistrationPage =new RegistrationPage(driver);	
 		
