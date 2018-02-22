@@ -44,7 +44,7 @@ import com.relevantcodes.extentreports.LogStatus;
 public class Scenario1 extends ExtendReportsClass{
  
 	RegistrationPage RegistrationPage;
-	WebDriver driver = null;
+	WebDriver driver;
 	String url ;
 	 
 	
@@ -53,6 +53,7 @@ public class Scenario1 extends ExtendReportsClass{
 	  
 	  
 	  
+	  //Grid implementation
 	  
 	  url = "http://10.159.34.113:4444/wd/hub";
 	          try {
@@ -118,6 +119,7 @@ public class Scenario1 extends ExtendReportsClass{
 	    
        RegistrationPage.passwordR.sendKeys(password);
        RegistrationPage.confirmR.sendKeys(confirm);
+       
        RegistrationPage.SubscribeR.click();
        RegistrationPage.checkboxR.click();
        RegistrationPage.continueR.click();

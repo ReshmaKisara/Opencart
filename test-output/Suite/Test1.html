@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>7/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Mon Feb 19 14:49:27 IST 2018</td>
+<td>Started on:</td><td>Thu Feb 22 15:32:19 IST 2018</td>
 </tr>
-<tr><td>Total time:</td><td>429 seconds (429833 ms)</td>
+<tr><td>Total time:</td><td>422 seconds (422374 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -75,48 +75,50 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='Javapackage.Scenario4.scenario4()'><b>scenario4</b><br>Test class: Javapackage.Scenario4</td>
-<td><div><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with xpath == //a[@href=&apos;index.php?route=product/product&amp;path=57&amp;product_id=49&apos;]
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+<td title='Javapackage.Scenario2.Login()'><b>Login</b><br>Test class: Javapackage.Scenario2<br>Test method: Login</td>
+<td><div><pre>org.openqa.selenium.WebDriverException: unknown error: Element &lt;input type=&quot;radio&quot; name=&quot;return_reason_id&quot; value=&quot;3&quot; id=&quot;return-reason-id3&quot;&gt; is not clickable at point (209, 616). Other element would receive the click: &lt;td width=&quot;1&quot;&gt;...&lt;/td&gt;
+  (Session info: chrome=64.0.3282.167)
+  (Driver info: chromedriver=2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f),platform=Windows NT 10.0.14393 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
 Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
 System info: host: &apos;D-113064577&apos;, ip: &apos;10.159.34.113&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_121&apos;
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{proxy=Proxy(), webdriver.remote.sessionid=32232a32-53ed-4171-a3ca-9052fd4c7e94, acceptInsecureCerts=false, browserVersion=11, se:ieOptions={nativeEvents=true, browserAttachTimeout=0, ie.ensureCleanSession=false, elementScrollBehavior=0, enablePersistentHover=true, ie.browserCommandLineSwitches=, ie.forceCreateProcessApi=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:29493/, ignoreZoomSetting=false, ie.fileUploadDialogTimeout=3000, ignoreProtectedModeSettings=false}, timeouts={implicit=0, pageLoad=300000, script=30000}, browserName=internet explorer, pageLoadStrategy=normal, javascriptEnabled=true, platformName=WINDOWS, setWindowRect=true, platform=WINDOWS}]
-Session ID: 32232a32-53ed-4171-a3ca-9052fd4c7e94
-*** Element info: {Using=xpath, value=//a[@href=&apos;index.php?route=product/product&amp;path=57&amp;product_id=49&apos;]}
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=XP, acceptSslCerts=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, platformName=XP, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f), userDataDir=C:\Users\rkisa\AppData\Local\Temp\scoped_dir1248_21418}, takesHeapSnapshot=true, pageLoadStrategy=normal, unhandledPromptBehavior=, databaseEnabled=false, handlesAlerts=true, version=64.0.3282.167, browserConnectionEnabled=false, nativeEvents=true, webdriver.remote.sessionid=711313a3e83c96977ae21aa38ec68223, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 711313a3e83c96977ae21aa38ec68223
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:82)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:45)
 	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:458)
-	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
-	at Javapackage.Scenario4.scenario4(Scenario4.java:101)
-... Removed 29 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace24039137", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace24039137'><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with xpath == //a[@href=&apos;index.php?route=product/product&amp;path=57&amp;product_id=49&apos;]
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:279)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
+	at Javapackage.Scenario2.Login(Scenario2.java:322)
+... Removed 29 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace404947798", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace404947798'><pre>org.openqa.selenium.WebDriverException: unknown error: Element &lt;input type=&quot;radio&quot; name=&quot;return_reason_id&quot; value=&quot;3&quot; id=&quot;return-reason-id3&quot;&gt; is not clickable at point (209, 616). Other element would receive the click: &lt;td width=&quot;1&quot;&gt;...&lt;/td&gt;
+  (Session info: chrome=64.0.3282.167)
+  (Driver info: chromedriver=2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f),platform=Windows NT 10.0.14393 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
 Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
 System info: host: &apos;D-113064577&apos;, ip: &apos;10.159.34.113&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_121&apos;
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{proxy=Proxy(), webdriver.remote.sessionid=32232a32-53ed-4171-a3ca-9052fd4c7e94, acceptInsecureCerts=false, browserVersion=11, se:ieOptions={nativeEvents=true, browserAttachTimeout=0, ie.ensureCleanSession=false, elementScrollBehavior=0, enablePersistentHover=true, ie.browserCommandLineSwitches=, ie.forceCreateProcessApi=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:29493/, ignoreZoomSetting=false, ie.fileUploadDialogTimeout=3000, ignoreProtectedModeSettings=false}, timeouts={implicit=0, pageLoad=300000, script=30000}, browserName=internet explorer, pageLoadStrategy=normal, javascriptEnabled=true, platformName=WINDOWS, setWindowRect=true, platform=WINDOWS}]
-Session ID: 32232a32-53ed-4171-a3ca-9052fd4c7e94
-*** Element info: {Using=xpath, value=//a[@href=&apos;index.php?route=product/product&amp;path=57&amp;product_id=49&apos;]}
+Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=XP, acceptSslCerts=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, platformName=XP, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f), userDataDir=C:\Users\rkisa\AppData\Local\Temp\scoped_dir1248_21418}, takesHeapSnapshot=true, pageLoadStrategy=normal, unhandledPromptBehavior=, databaseEnabled=false, handlesAlerts=true, version=64.0.3282.167, browserConnectionEnabled=false, nativeEvents=true, webdriver.remote.sessionid=711313a3e83c96977ae21aa38ec68223, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 711313a3e83c96977ae21aa38ec68223
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
 	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:82)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:45)
 	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:458)
-	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
-	at Javapackage.Scenario4.scenario4(Scenario4.java:101)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:279)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
+	at Javapackage.Scenario2.Login(Scenario2.java:322)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -143,8 +145,8 @@ Session ID: 32232a32-53ed-4171-a3ca-9052fd4c7e94
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 </pre></div></td>
-<td>31</td>
-<td>Javapackage.Scenario4@31a5c39e</td></tr>
+<td>47</td>
+<td>Javapackage.Scenario2@e45f292</td></tr>
 </table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
@@ -156,13 +158,8 @@ Session ID: 32232a32-53ed-4171-a3ca-9052fd4c7e94
 <tr>
 <td title='Javapackage.Scenario1.Login()'><b>Login</b><br>Test class: Javapackage.Scenario1<br>Parameters: Reshma, Kisara, reshma.20@gmail.com, 9885919298, 111, Wipro, 678, Plot No:411/3,DASDAFDF, ecil, Hyderabad, 500083, Abc@12345, Abc@12345</td>
 <td></td>
-<td>27</td>
+<td>28</td>
 <td>Javapackage.Scenario1@5bcab519</td></tr>
-<tr>
-<td title='Javapackage.Scenario2.Login()'><b>Login</b><br>Test class: Javapackage.Scenario2<br>Test method: Login</td>
-<td></td>
-<td>60</td>
-<td>Javapackage.Scenario2@e45f292</td></tr>
 <tr>
 <td title='Javapackage.Scenario1.Review()'><b>Review</b><br>Test class: Javapackage.Scenario1<br>Parameters: Reshma, asdfg, 3</td>
 <td></td>
@@ -171,23 +168,28 @@ Session ID: 32232a32-53ed-4171-a3ca-9052fd4c7e94
 <tr>
 <td title='Javapackage.Scenario1.Review()'><b>Review</b><br>Test class: Javapackage.Scenario1<br>Parameters: Kisara, asdasdjlkj jlkjlkdjlk jlksajdlkajd aldkjaslkdj ajdklajsdlasd ajsdkjas ajkhkja djklaslkdj jlskdjlaks jslskdjlkas jskdjalkj jlkasjdkl , 4</td>
 <td></td>
-<td>12</td>
+<td>11</td>
 <td>Javapackage.Scenario1@5bcab519</td></tr>
 <tr>
 <td title='Javapackage.Scenario1.Wishlist()'><b>Wishlist</b><br>Test class: Javapackage.Scenario1<br>Test method: Add to wishList</td>
 <td></td>
-<td>32</td>
+<td>33</td>
 <td>Javapackage.Scenario1@5bcab519</td></tr>
 <tr>
 <td title='Javapackage.Scenario3.aLogin()'><b>aLogin</b><br>Test class: Javapackage.Scenario3</td>
 <td></td>
-<td>5</td>
+<td>7</td>
 <td>Javapackage.Scenario3@5f2108b5</td></tr>
 <tr>
 <td title='Javapackage.Scenario3.bApple()'><b>bApple</b><br>Test class: Javapackage.Scenario3<br>Parameters: apple</td>
 <td></td>
-<td>87</td>
+<td>90</td>
 <td>Javapackage.Scenario3@5f2108b5</td></tr>
+<tr>
+<td title='Javapackage.Scenario4.scenario4()'><b>scenario4</b><br>Test class: Javapackage.Scenario4</td>
+<td></td>
+<td>144</td>
+<td>Javapackage.Scenario4@31a5c39e</td></tr>
 </table><p>
 </body>
 </html>

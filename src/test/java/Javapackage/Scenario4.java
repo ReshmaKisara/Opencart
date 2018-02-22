@@ -34,7 +34,7 @@ public class Scenario4 extends ExtendReportsClass {
 	FileInputStream File;
 	  Properties pro;
 	  String url;
-	WebDriver driver = null;
+	WebDriver driver;
 	
 	
   @BeforeClass
@@ -43,8 +43,8 @@ public class Scenario4 extends ExtendReportsClass {
 	  File=new FileInputStream(new File("D:\\Selenium Docs\\Selenium Eclipse\\Test1\\Repo.properties"));
 	  pro=new Properties();
 	  pro.load(File);
-	  
-	  url = "http://10.159.34.113:4444/wd/hub";
+	  System.setProperty("webdriver.ie.driver", "D:\\Selenium Docs\\Selenium Drivers\\IEDriverServer.exe");
+	  url = "http://10.159.34.113:8888/wd/hub";
       try {
           DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
           //capabilities.setBrowserName("chrome");
@@ -99,8 +99,8 @@ public class Scenario4 extends ExtendReportsClass {
 
 	  //step5-Samsung galaxy
           driver.findElement(By.xpath(pro.getProperty("Samsunggalaxy.xpath"))).click();
-           System.out.println("Clicked on Samsung galaxy tab");
-           Thread.sleep(3000);
+          System.out.println("Clicked on Samsung galaxy tab");
+          Thread.sleep(3000);
 	    
 	  //step6-Samsung galaxy image
 	    driver.findElement(By.xpath(pro.getProperty("Samsunggalaxy.image.xpath"))).click();

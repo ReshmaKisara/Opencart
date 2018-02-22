@@ -37,7 +37,7 @@ public class Scenario3 extends ExtendReportsClass{
 	FileInputStream File;
 	  Properties pro;
 	  
-	  WebDriver driver = null;
+	  WebDriver driver;
 	  String str1;
 	  String url;
 	  @BeforeClass
@@ -50,10 +50,12 @@ public class Scenario3 extends ExtendReportsClass{
 		  
 		  url = "http://10.159.34.113:4444/wd/hub";
           try {
-              DesiredCapabilities capabilities = new DesiredCapabilities();
+              DesiredCapabilities capabilities =new DesiredCapabilities();
+              
               capabilities.setBrowserName("chrome");
               capabilities.setPlatform(Platform.WINDOWS);
               driver = new RemoteWebDriver(new URL(url), capabilities);
+              
           }catch(Exception e){
               e.printStackTrace();
           }
@@ -114,6 +116,7 @@ public class Scenario3 extends ExtendReportsClass{
 		  
 	  //step4-Search
 	  driver.findElement(By.xpath(pro.getProperty("search.click.xpath"))).sendKeys(product);
+	  Thread.sleep(1000);
 	  Robot rb=new Robot();
 	  rb.keyPress(KeyEvent.VK_ENTER);
 	  rb.keyRelease(KeyEvent.VK_ENTER);
@@ -248,6 +251,7 @@ bw2.close();
 	      System.out.println(prodname.get(1));
 	      System.out.println(prodname.get(2));
 	    
+	      
 	   //------------------------------------------------
 	  
 	  //Click on close
@@ -263,13 +267,13 @@ bw2.close();
 	    //----------------------------
 	                   
 	        //Validation	                   
-	         String pname1=driver.findElement(By.xpath("//a[contains(text(),'Palm Treo Pro')]")).getText();
+	         String pname1=driver.findElement(By.linkText("Palm Treo Pro")).getText();
 	         Assert.assertEquals(pname1, prodname.get(0));
 	         
-	         String pname2=driver.findElement(By.xpath("//a[contains(text(),'iPhone')]")).getText();
+	         String pname2=driver.findElement(By.linkText("iPhone")).getText();
 	         Assert.assertEquals(pname2, prodname.get(1));
 	         
-	         String pname3=driver.findElement(By.xpath("//a[contains(text(),'HTC Touch HD')]")).getText();
+	         String pname3=driver.findElement(By.linkText("HTC Touch HD")).getText();
 	         Assert.assertEquals(pname3, prodname.get(2));
 	         
 	         System.out.println("Validation is success");
@@ -278,7 +282,7 @@ bw2.close();
 	         
 	              
 	  //step10-click on 1st phone link
-	                   driver.findElement(By.xpath(".//*[@id='content']/table/tbody[1]/tr[1]/td[2]/a")).click();
+	                   driver.findElement(By.linkText("iPhone")).click();
 	                    System.out.println("clicked on the 1st phone link");
 	                    Thread.sleep(3000);
 	                    
@@ -290,16 +294,19 @@ bw2.close();
 	                    	String tab=File.get(i).getText();
 	                    }*/
 	                    
-	          BufferedWriter flatfile=new BufferedWriter(new FileWriter("D:\\Selenium Docs\\Selenium Eclipse\\Output files\\Tc02_step11.txt"));
+	          /*BufferedWriter flatfile=new BufferedWriter(new FileWriter("D:\\Selenium Docs\\Selenium Eclipse\\Output files\\Tc02_step11.txt"));
 	          String Description=driver.findElement(By.xpath(".//*[@id='tab-description']/ul/li[5]")).getText();
 	          flatfile.write("Feature 5th line is " +Description);
-	          flatfile.close();
+	          flatfile.close();*/
 	                    
+	          
 	   //step12-click on add to cart
 	                  driver.findElement(By.xpath("//input[@type='button']")).click();
 	                  System.out.println("Add to cart");
 	                  Thread.sleep(3000);
 	                   
+	                  
+	                  
 	                   //step13-click on Shopping cart
 	                  driver.findElement(By.xpath(".//*[@id='notification']/div/a[2]")).click();
 	                  System.out.println("Shopping cart link");

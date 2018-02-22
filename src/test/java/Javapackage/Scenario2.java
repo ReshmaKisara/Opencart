@@ -37,7 +37,7 @@ public class Scenario2 extends ExtendReportsClass{
 	FileInputStream File;
 	  Properties pro;
 	  
-	  WebDriver driver = null;
+	  WebDriver driver;
 	  String str1;
 	  String url;
 	 
@@ -318,7 +318,7 @@ public class Scenario2 extends ExtendReportsClass{
 	       System.out.println("Clicked on return");
 	       
 	       //step19 Return page details filling
-	       Thread.sleep(2000);
+	       Thread.sleep(3000);
 	       driver.findElement(By.id(pro.getProperty("productreturns.reasonforreturn.id"))).click();
 	       System.out.println("Clicked on order error");
 	       
