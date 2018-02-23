@@ -3,15 +3,16 @@
 <suite thread-count="-1" guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="Javapackage.Scenario2">
+      <class name="Javapackage.Dataprovider">
         <methods>
           <include name="endReport"/>
-          <include name="Login"/>
           <include name="startReport"/>
+          <include name="Review" invocation-numbers="0 1"/>
+          <include name="Wishlist"/>
           <include name="getResult"/>
-          <include name="f"/>
+          <include name="start"/>
         </methods>
-      </class> <!-- Javapackage.Scenario2 -->
+      </class> <!-- Javapackage.Dataprovider -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

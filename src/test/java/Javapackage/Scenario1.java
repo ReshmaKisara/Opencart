@@ -50,12 +50,8 @@ public class Scenario1 extends ExtendReportsClass{
 	
   @BeforeClass
   public void start() throws Exception {
-	  
-	  
-	  
-	  //Grid implementation
-	  
-	  url = "http://10.159.34.113:4444/wd/hub";
+	    //Grid implementation
+	   url = "http://10.159.34.113:4444/wd/hub";
 	          try {
 	              DesiredCapabilities capabilities =new DesiredCapabilities();
 	              capabilities.setBrowserName("chrome");
@@ -65,22 +61,18 @@ public class Scenario1 extends ExtendReportsClass{
 	          }catch(Exception e){
 	              e.printStackTrace();
 	          }
-	  /*System.setProperty("webdriver.chrome.driver", "D:\\Selenium Docs\\Selenium Drivers\\chromedriver.exe");
+	    /*System.setProperty("webdriver.chrome.driver", "D:\\Selenium Docs\\Selenium Drivers\\chromedriver.exe");
 	   driver=new ChromeDriver();*/
 	   driver.manage().window().maximize();
 	   
-	   
-		
-	 //Step1-Launch opencart
-		 
+	   //Step1-Launch opencart	
 	   driver.get("http://10.207.182.108:81/opencart/");
+	   Thread.sleep(3000);	
 	   
-		Thread.sleep(3000);	
-	//step2-click on Create an account
-		
+	   //step2-click on Create an account
 		RegistrationPage =new RegistrationPage(driver);	
-		
 		RegistrationPage.Register.click();
+		System.out.println("Clicked on register");
   }
   /*------------------------------------------------------------------------*/
    

@@ -12,6 +12,15 @@
           <include name="f"/>
         </methods>
       </class> <!-- Javapackage.Scenario2 -->
+      <class name="Javapackage.Scenario4">
+        <methods>
+          <include name="endReport"/>
+          <include name="scenario4"/>
+          <include name="startReport"/>
+          <include name="getResult"/>
+          <include name="beforeClass"/>
+        </methods>
+      </class> <!-- Javapackage.Scenario4 -->
     </classes>
   </test> <!-- Test1(failed) -->
 </suite> <!-- Failed suite [Suite] -->
